@@ -303,6 +303,13 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-data</artifactId>
         </dependency>
+        <!-- Lambok -->
+        <!--<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <scope>compile</scope>
+        </dependency>-->
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
 

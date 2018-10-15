@@ -21,6 +21,7 @@
             "admin": {
                 "main": "Administration",
                 "userManagement": "User management",
+                "projectManagement": "Project Management",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
                 "health": "Health",
@@ -128,6 +129,7 @@
         "NotNull": "Field {{ fieldName }} cannot be empty!",
         "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
         "userexists": "Login name already used!",
+        "projectexists": "Project name already exist!",
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID",
         "idnull": "Invalid ID"
