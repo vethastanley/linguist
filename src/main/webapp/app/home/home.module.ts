@@ -1,12 +1,15 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { LinguistSharedModule } from 'app/shared';
+import { LinguistSharedModule } from '../shared';
+
 import { HOME_ROUTE, HomeComponent } from './';
 
 @NgModule({
-    imports: [LinguistSharedModule, RouterModule.forChild([HOME_ROUTE])],
+    imports: [LinguistSharedModule, RouterModule.forRoot([HOME_ROUTE], { useHash: true })],
     declarations: [HomeComponent],
+    entryComponents: [],
+    providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LinguistHomeModule {}

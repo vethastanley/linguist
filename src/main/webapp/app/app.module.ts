@@ -20,6 +20,7 @@ import { LinguistEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { AppService } from './app.service';
 
 @NgModule({
     imports: [
@@ -58,7 +59,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
             useClass: NotificationInterceptor,
             multi: true,
             deps: [Injector]
-        }
+        },
+        AppService
     ],
     bootstrap: [JhiMainComponent]
 })

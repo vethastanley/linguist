@@ -1,43 +1,51 @@
-<div class="modal-header">
-    <h4 class="modal-title" jhiTranslate="login.title">Sign in</h4>
-    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
-    </button>
+<div class="modal-header information">
+    <div class="font-modal-header style-display-inline-block" id="myApplicationsLabel" >Sign in</div>
+    <button type="button" style="font-size: 20px;border: 0;color: #0899cc;background-color: #ebf0f5;cursor: pointer" data-dismiss="modal" aria-hidden="true"
+            (click)="activeModal.dismiss('closed')"><span class="fa fa-times" aria-hidden="true"></span></button>
 </div>
+
 <div class="modal-body">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication">
                 <strong>Failed to sign in!</strong> Please check your credentials and try again.
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <form class="form" role="form" (ngSubmit)="login()">
                 <div class="form-group">
-                    <label class="username-label" for="username" jhiTranslate="global.form.username">Login</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
-                    [(ngModel)]="username">
+                    <label for="username" style="font-weight: bold" >Username</label>
+                    <input type="text" style="margin-top: 5px" class="form-control" name="username" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
+                           [(ngModel)]="username">
                 </div>
                 <div class="form-group">
-                    <label for="password" jhiTranslate="login.form.password">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
+                    <label for="password" style="font-weight: bold" >Password</label>
+                    <input type="password" style="margin-top: 5px" class="form-control" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
                            [(ngModel)]="password">
                 </div>
-                <div class="form-check">
+                <div class="form-check" style="margin-top: 5px">
                     <label class="form-check-label" for="rememberMe">
-                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe" checked>
-                        <span jhiTranslate="login.form.rememberme">Remember me</span>
+                        <input class="form-check-input" type="checkbox" name="rememberMe" style="bottom: 0" id="rememberMe" [(ngModel)]="rememberMe" checked>
+                        <span jhiTranslate="login.form.rememberme" >Remember me</span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button">Sign in</button>
+                <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" style="margin-top: 10px">Sign in</button>
             </form>
             <p></p>
-            <div class="alert alert-warning">
-                <a class="alert-link" (click)="requestResetPassword()" jhiTranslate="login.password.forgot">Did you forget your password?</a>
-            </div>
-            <div class="alert alert-warning">
-                <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
-                <a class="alert-link" (click)="register()" jhiTranslate="global.messages.info.register.link">Register a new account</a>
-            </div>
+            <!--<div class="alert alert-warning">-->
+            <!--<a class="alert-link" (click)="requestResetPassword()" jhiTranslate="login.password.forgot">Did you forget your password?</a>-->
+            <!--</div>-->
+            <!--<div class="alert alert-warning">-->
+            <!--<span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>-->
+            <!--<a class="alert-link" (click)="register()" jhiTranslate="global.messages.info.register.link">Register a new account</a>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-6">-->
+            <!--<br/>-->
+            <!--<jhi-social provider="google"></jhi-social>-->
+            <!--<jhi-social provider="facebook"></jhi-social>-->
+            <!--<jhi-social provider="twitter"></jhi-social>-->
+            <!--&lt;!&ndash; jhipster-needle-add-social-button &ndash;&gt;-->
+            <!--</div>-->
         </div>
     </div>
-</div>

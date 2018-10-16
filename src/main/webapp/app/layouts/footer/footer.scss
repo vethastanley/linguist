@@ -1,0 +1,49 @@
+.footer-margin {
+    border-top: 1px solid #f0f0f0;
+    clear: both;
+    padding: 5px 30px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    position: fixed;
+    height: 30px;
+    display: inline-block;
+}
+
+.copyright-text {
+    font-size: 12px;
+    line-height: 12px;
+    width: 500px;
+}
+
+.footer-version {
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.footer-logo {
+    height: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 20px;
+}
+
+.style-float-left {
+    float: left;
+}
+
+.style-float-right {
+    float: right;
+}
+
+.style-display-inline-block {
+    display: inline-block;
+}

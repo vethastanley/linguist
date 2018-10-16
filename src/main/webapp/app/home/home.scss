@@ -10,14 +10,204 @@ Main page styles
     background-size: contain;
 }
 
+.welcome-worspace-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    height: calc(100%);
+    overflow-y: auto;
+    min-height: 564px;
+}
+
+.welcome-container {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 564px;
+    margin: auto;
+}
+
+.welcome-text {
+    text-align: center;
+    padding-bottom: 30px;
+    font-family: 'Roboto', Arial, Sans-Serif;
+    height: 162px;
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-text-title {
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 300;
+    margin: 0px 0px 20px 0px;
+    position: relative;
+}
+
+.welcome-text-gateway {
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.welcome-text-description {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    position: relative;
+}
+
+.topics-container {
+    display: table;
+    height: 402px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topic-entry {
+    margin-left: 15px;
+}
+.topic-entry:hover {
+    color: #0899cc;
+}
+.topic-entry-gap {
+    margin-right: 9px;
+}
+
+.empty-container-between-topics {
+    width: 20px;
+    display: inline-block;
+}
+
+.single-topic-style {
+    display: inline-block;
+    width: 354px;
+    cursor: pointer;
+}
+
+.topic-image {
+    margin-bottom: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.topic-box {
+    width: 354px;
+    text-align: center;
+    font-family: 'Roboto', Arial, Sans-Serif;
+    padding: 26px;
+    height: 200px;
+    position: relative;
+}
+
+.topic-box-title {
+    font-family: 'Roboto', Arial, Sans-Serif;
+    font-weight: 500;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.topic-box-helptext {
+    font-family: 'Roboto', Arial, Sans-Serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    padding: 21px 0px 26px 0px;
+    height: 70px;
+}
+
+.topic-box-button {
+    height: 32px;
+    width: 132px;
+    font-size: 14px;
+    line-height: 32px;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    clear: both;
+    display: block;
+    margin: 0px auto;
+    position: absolute;
+    bottom: 26px;
+    left: 30%;
+}
+
+.welcome-banner {
+    width: 100%;
+    display: inline-block;
+}
+
+.welcome-text-title {
+    color: #333;
+}
+
+.welcome-text-gateway {
+    color: #0899cc;
+}
+
+.welcome-text-description {
+    color: #666;
+}
+
+.topic-box {
+    color: #fff;
+}
+
+.topic-box1 {
+    background-color: #2b84c5;
+}
+
+.topic-box2 {
+    background-color: #fec057;
+}
+
+.topic-box3 {
+    background-color: #107200;
+}
+
+.topic-box-button {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.font-default {
+    color: #666666;
+}
+
+.font-default-white {
+    color: #fff;
+}
+
+.font-link,
+.font-link:hover {
+    color: #0899cc;
+}
+
+.font-link:active {
+    color: #006f97;
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
     only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
     only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .hipster {
         background: url('../../content/images/hipster2x.png') no-repeat center top;
         background-size: contain;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .welcome-worspace-container {
+        width: 1280px;
+        height: 840px;
+        margin: auto;
     }
 }
