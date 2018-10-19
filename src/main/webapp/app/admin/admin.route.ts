@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { auditsRoute, configurationRoute, docsRoute, healthRoute, logsRoute, metricsRoute, userMgmtRoute } from './';
+import { auditsRoute, configurationRoute, docsRoute, healthRoute, logsRoute, metricsRoute, userMgmtRoute, userDialogRoute } from './';
 
 import { UserRouteAccessService } from 'app/core';
 
@@ -14,5 +14,6 @@ export const adminState: Routes = [
         },
         canActivate: [UserRouteAccessService],
         children: ADMIN_ROUTES
-    }
+    },
+    ...userDialogRoute
 ];

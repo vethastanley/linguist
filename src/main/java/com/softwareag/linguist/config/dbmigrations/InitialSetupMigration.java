@@ -20,18 +20,13 @@ public class InitialSetupMigration {
     public void addAuthorities(MongoTemplate mongoTemplate) {
         Authority adminAuthority = new Authority();
         adminAuthority.setName(AuthoritiesConstants.ADMIN);
-        Authority userAuthority = new Authority();
-        userAuthority.setName(AuthoritiesConstants.USER);
         mongoTemplate.save(adminAuthority);
-        mongoTemplate.save(userAuthority);
     }
 
     @ChangeSet(order = "02", author = "initiator", id = "02-addUsers")
     public void addUsers(MongoTemplate mongoTemplate) {
         Authority adminAuthority = new Authority();
         adminAuthority.setName(AuthoritiesConstants.ADMIN);
-        Authority userAuthority = new Authority();
-        userAuthority.setName(AuthoritiesConstants.USER);
 
         User systemUser = new User();
         systemUser.setId("user-0");
@@ -45,7 +40,6 @@ public class InitialSetupMigration {
         systemUser.setCreatedBy(systemUser.getLogin());
         systemUser.setCreatedDate(Instant.now());
         systemUser.getAuthorities().add(adminAuthority);
-        systemUser.getAuthorities().add(userAuthority);
         mongoTemplate.save(systemUser);
 
         User anonymousUser = new User();
@@ -73,7 +67,6 @@ public class InitialSetupMigration {
         adminUser.setCreatedBy(systemUser.getLogin());
         adminUser.setCreatedDate(Instant.now());
         adminUser.getAuthorities().add(adminAuthority);
-        adminUser.getAuthorities().add(userAuthority);
         mongoTemplate.save(adminUser);
 
         User userUser = new User();
@@ -87,7 +80,6 @@ public class InitialSetupMigration {
         userUser.setLangKey("en");
         userUser.setCreatedBy(systemUser.getLogin());
         userUser.setCreatedDate(Instant.now());
-        userUser.getAuthorities().add(userAuthority);
         mongoTemplate.save(userUser);
     }
 }

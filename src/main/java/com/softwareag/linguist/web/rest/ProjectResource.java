@@ -35,7 +35,7 @@ public class ProjectResource {
     }
 
     @PostMapping("/projects")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.PM + "\")")
     public ResponseEntity<Project> createProject(Project project) throws URISyntaxException {
         log.debug("About to create Project {}", project);
         if (project.getId() != null) {
@@ -49,7 +49,7 @@ public class ProjectResource {
     }
 
     @PutMapping("/projects")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.PM + "\")")
     public ResponseEntity<Project> updateProject(Project project) throws URISyntaxException {
         log.debug("About to update the project {}", project);
         Project updatedProject = service.updateProject(project);
