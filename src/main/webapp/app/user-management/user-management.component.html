@@ -1,4 +1,16 @@
 <div>
+    <div class="breadcrumb-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-style"  [class.active]="false">
+                <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-style"  [class.active]="true">
+                <a >User management</a>
+            </li>
+        </ol>
+    </div>
+</div>
+<div>
     <h2>
         <span id="user-management-page-heading" jhiTranslate="userManagement.home.title">Users</span>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
