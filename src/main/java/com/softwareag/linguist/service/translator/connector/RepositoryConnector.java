@@ -56,7 +56,7 @@ public class RepositoryConnector {
                 } else {
                     String regex = localizedFilesBase + localizedFilesPattern;
                     if (treeWalk.getPathString().matches(regex)) {
-                        localizedFilesPath.add(targetLocation + treeWalk.getPathString());
+                        localizedFilesPath.add(targetLocation + File.separatorChar + treeWalk.getPathString());
                         System.out.println("file: " + treeWalk.getPathString());
                     }
                 }

@@ -29,12 +29,14 @@ public class VirtualTranslator {
     }
 
     public void triggerTranslation(Project project) throws Exception {
-        String projectTemp = tempLocation + File.separatorChar + project.getId();
+        String projectTemp = tempLocation + project.getId();
+        System.out.println("projectTemp :"+projectTemp);
         File temp = new File(projectTemp);
         if (!temp.exists()) {
             temp.mkdir();
         }
         List<String> localizedProperties = connector.findLocalizedProperties(project.getUrl(), projectTemp);
+        System.out.println("localizedProperties :"+localizedProperties);
         localizedProperties.forEach(localizedProperty -> {
             try {
                 translateAndCreate(localizedProperty, Locale.forLanguageTag(project.getSource().name()),
