@@ -1,0 +1,86 @@
+<div>
+    <div class="breadcrumb-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-style"  [class.active]="false">
+                <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-style"  [class.active]="true">
+                <a >Project management</a>
+            </li>
+        </ol>
+    </div>
+</div>
+<div>
+    <h2>
+        <span id="project-management-page-heading">Projects</span>
+        <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
+            <fa-icon [icon]="'plus'"></fa-icon> <span>Create a new Project</span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="table-responsive" *ngIf="projects">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="login"><span>Project Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="email"><span>Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+                <th jhiSortBy="langKey"> <span>Source Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span>Owner</span></th>
+                <th jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody *ngIf ="projects">
+            <tr *ngFor="let project of projects; trackBy: trackIdentity">
+                <td><a [routerLink]="['./', project.id, 'view']">{{project.id}}</a></td>
+                <td>{{project.name}}</td>
+                <td>{{project.repoType}}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="setActive(project, true)" *ngIf="!project.activated">Deactivated</button>
+                    <button class="btn btn-success btn-sm" (click)="setActive(project, false)" *ngIf="project.activated">Activated</button>
+                </td>
+                <td>{{project.source}}</td>
+                <td>{{project.createdBy}}</td>
+                <td>{{project.createdDate | date:'dd/MM/yy HH:mm'}}</td>
+                <td>{{project.lastModifiedBy}}</td>
+                <td>{{project.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['./', project.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['./', project.id, 'edit']"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </button>
+                        <button type="button" (click)="triggerTranslation(project)"
+                                class="btn btn-primary btn-sm"">
+                            <fa-icon [icon]="'play'"></fa-icon>
+                        </button>
+                        <button type="button" (click)="deleteProject(user)"
+                                class="btn btn-danger btn-sm" [disabled]="project.createdBy !== currentAccount.login">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="projects">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

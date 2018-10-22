@@ -21,7 +21,7 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 import { AppService } from './app.service';
-import { LinguistProjectModule } from 'app/project/project.module';
+import { LinguistProjectManagementModule } from 'app/project-management/project-management.module.ts';
 import { LinguistUserManagementModule } from 'app/user-management/user-management.module';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { LinguistUserManagementModule } from 'app/user-management/user-managemen
         LinguistHomeModule,
         LinguistAccountModule,
         LinguistEntityModule,
-        LinguistProjectModule,
+        LinguistProjectManagementModule,
         LinguistUserManagementModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],

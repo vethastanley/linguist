@@ -13,8 +13,5 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepository extends MongoRepository<Project, String> {
 
-    String PROJECT_BY_NAME = "projectByName";
-
-    @Cacheable(cacheNames = PROJECT_BY_NAME)
     Optional<Project> findOneByName(String name);
 }

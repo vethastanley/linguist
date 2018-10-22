@@ -1,0 +1,171 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="projectForm" role="form" novalidate (ngSubmit)="save()" #projectForm="ngForm">
+            <h2 id="myUserLabel">
+                Create or edit a Project
+            </h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!project.id">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="id" [(ngModel)]="project.id" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label">Project Name</label>
+                    <input type="text" class="form-control" name="name" #projectNameInput="ngModel"
+                        [(ngModel)]="project.name" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+
+                    <div *ngIf="projectNameInput.dirty && projectNameInput.invalid">
+                        <small class="form-text text-danger"
+                        *ngIf="projectNameInput.errors.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                        *ngIf="projectNameInput.errors.maxlength"
+                        translateValues="{max: 50}">
+                            This field cannot be longer than 50 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                        *ngIf="projectNameInput.errors.pattern">
+                            This field can only contain letters, digits and e-mail addresses.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Repository Type</label>
+                    <input type="text" class="form-control" name="repoType" #repoTypeInput="ngModel"
+                        [(ngModel)]="project.repoType" required maxlength="50">
+
+                    <div *ngIf="repoTypeInput.dirty && repoTypeInput.invalid">
+                        <small class="form-text text-danger"
+                        *ngIf="repoTypeInput.errors.maxlength"
+                        translateValues="{max: 50}">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Repository URL</label>
+                    <input type="text" class="form-control" name="url" #urlInput="ngModel"
+                        [(ngModel)]="project.url" required maxlength="50">
+
+                    <div *ngIf="urlInput.dirty && urlInput.invalid">
+                        <small class="form-text text-danger"
+                        *ngIf="urlInput.errors.maxlength"
+                        translateValues="{max: 50}">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Username</label>
+                    <input type="text" class="form-control" name="username" #usernameInput="ngModel"
+                       [(ngModel)]="project.username" minlength="5" required maxlength="254">
+
+                    <div *ngIf="usernameInput.dirty && usernameInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="usernameInput.errors.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="usernameInput.errors.maxlength"
+                               translateValues="{max: 100}">
+                            This field cannot be longer than 100 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="usernameInput.errors.minlength"
+                               translateValues="{min: 5}">
+                            This field is required to be at least 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Password</label>
+                    <input type="password" class="form-control" name="password" #passwordInput="ngModel"
+                           [(ngModel)]="project.password" minlength="5" required maxlength="254">
+
+                    <div *ngIf="passwordInput.dirty && passwordInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="passwordInput.errors.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="passwordInput.errors.maxlength"
+                               translateValues="{max: 100}">
+                            This field cannot be longer than 100 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="passwordInput.errors.minlength"
+                               translateValues="{min: 5}">
+                            This field is required to be at least 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">File Pattern</label>
+                    <input type="text" class="form-control" name="pattern" #patternInput="ngModel"
+                           [(ngModel)]="project.pattern" minlength="5" required maxlength="254">
+
+                    <div *ngIf="patternInput.dirty && patternInput.invalid">
+                        <small class="form-text text-danger"
+                               *ngIf="patternInput.errors.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="patternInput.errors.maxlength"
+                               translateValues="{max: 100}">
+                            This field cannot be longer than 100 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="patternInput.errors.minlength"
+                               translateValues="{min: 5}">
+                            This field is required to be at least 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="activated">
+                        <input class="form-check-input" [disabled]="project.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="project.activated">
+                        <span>Activated</span>
+                    </label>
+                </div>
+
+                <div class="form-group" *ngIf="languages && languages.length > 0">
+                    <label>Source Language</label>
+                    <select class="form-control" id="sourceLangKey" name="sourceLangKey" [(ngModel)]="project.source">
+                        <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                    </select>
+                </div>
+                <div class="form-group" *ngIf="languages && languages.length > 0">
+                    <label>Destination Language</label>
+                    <select class="form-control" id="destLangKey" name="destLangKey" [(ngModel)]="project.destination">
+                        <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                    </select>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="review">
+                        <input class="form-check-input" [disabled]="project.id === null" type="checkbox" id="review" name="activated" [(ngModel)]="project.review">
+                        <span>Review</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" [disabled]="projectForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

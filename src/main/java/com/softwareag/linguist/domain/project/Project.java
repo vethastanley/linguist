@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by VST on 11/10/2018.
@@ -19,17 +20,27 @@ public class Project extends AbstractAuditingEntity implements Serializable {
 
     private String name;
 
-    private String owner;
+    private RepositoryType repoType;
 
-    private List<Repository> repositories;
+    private String url;
 
-    private List<Language> languages;
+    private String username;
 
-    private List<Translator> translators;
+    private String password;
+
+    private String pattern;
+
+    private Language source;
+
+    private List<Language> destination;
+
+    private List<String> translators;
 
     private List<String> developers;
 
-    protected boolean review;
+    private boolean review;
+
+    private boolean activated;
 
     public String getId() {
         return id;
@@ -47,35 +58,67 @@ public class Project extends AbstractAuditingEntity implements Serializable {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
+    public RepositoryType getRepoType() {
+        return repoType;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setRepoType(RepositoryType repoType) {
+        this.repoType = repoType;
     }
 
-    public List<Repository> getRepositories() {
-        return repositories;
+    public String getUrl() {
+        return url;
     }
 
-    public void setRepositories(List<Repository> repositories) {
-        this.repositories = repositories;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public List<Language> getLanguages() {
-        return languages;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLanguages(List<Language> languages) {
-        this.languages = languages;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public List<Translator> getTranslators() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
+    }
+
+    public Language getSource() {
+        return source;
+    }
+
+    public void setSource(Language source) {
+        this.source = source;
+    }
+
+    public List<Language> getDestination() {
+        return destination;
+    }
+
+    public void setDestination(List<Language> destination) {
+        this.destination = destination;
+    }
+
+    public List<String> getTranslators() {
         return translators;
     }
 
-    public void setTranslators(List<Translator> translators) {
+    public void setTranslators(List<String> translators) {
         this.translators = translators;
     }
 
@@ -95,36 +138,37 @@ public class Project extends AbstractAuditingEntity implements Serializable {
         this.review = review;
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Project)) return false;
-
         Project project = (Project) o;
-
-        if (review != project.review) return false;
-        if (id != null ? !id.equals(project.id) : project.id != null) return false;
-        if (name != null ? !name.equals(project.name) : project.name != null) return false;
-        if (owner != null ? !owner.equals(project.owner) : project.owner != null) return false;
-        if (repositories != null ? !repositories.equals(project.repositories) : project.repositories != null)
-            return false;
-        if (languages != null ? !languages.equals(project.languages) : project.languages != null) return false;
-        if (translators != null ? !translators.equals(project.translators) : project.translators != null) return false;
-        return developers != null ? developers.equals(project.developers) : project.developers == null;
-
+        return review == project.review &&
+            activated == project.activated &&
+            Objects.equals(id, project.id) &&
+            Objects.equals(name, project.name) &&
+            repoType == project.repoType &&
+            Objects.equals(url, project.url) &&
+            Objects.equals(username, project.username) &&
+            Objects.equals(password, project.password) &&
+            Objects.equals(pattern, project.pattern) &&
+            source == project.source &&
+            Objects.equals(destination, project.destination) &&
+            Objects.equals(translators, project.translators) &&
+            Objects.equals(developers, project.developers);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (owner != null ? owner.hashCode() : 0);
-        result = 31 * result + (repositories != null ? repositories.hashCode() : 0);
-        result = 31 * result + (languages != null ? languages.hashCode() : 0);
-        result = 31 * result + (translators != null ? translators.hashCode() : 0);
-        result = 31 * result + (developers != null ? developers.hashCode() : 0);
-        result = 31 * result + (review ? 1 : 0);
-        return result;
+        return Objects.hash(id, name, repoType, url, username, password, pattern, source, destination, translators, developers, review, activated);
     }
 
     @Override
@@ -132,12 +176,17 @@ public class Project extends AbstractAuditingEntity implements Serializable {
         return "Project{" +
             "id='" + id + '\'' +
             ", name='" + name + '\'' +
-            ", owner='" + owner + '\'' +
-            ", repositories=" + repositories +
-            ", languages=" + languages +
+            ", repoType=" + repoType +
+            ", url='" + url + '\'' +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", pattern='" + pattern + '\'' +
+            ", source=" + source +
+            ", destination=" + destination +
             ", translators=" + translators +
             ", developers=" + developers +
             ", review=" + review +
+            ", activated=" + activated +
             '}';
     }
 }
