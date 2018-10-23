@@ -25,7 +25,7 @@ import java.util.List;
 @Component
 public class RepositoryConnector {
 
-    private static final String localizedFilesBase = "src/main/resources/i18n/";
+    private static final String localizedFilesBase = "src/main/webapp/i18n/en/";
     private static final String localizedFilesPattern = "([^(_)]*).json";
 
     public List<String> findLocalizedProperties(String repositoryLocation, String targetLocation) throws  Exception {
