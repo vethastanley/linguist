@@ -1,7 +1,7 @@
 package com.softwareag.linguist.service;
 
 import com.softwareag.linguist.domain.project.Project;
-import com.softwareag.linguist.service.translator.TranslateText;
+import com.softwareag.linguist.service.translator.MicrosoftVirtualTranslator;
 import com.softwareag.linguist.service.translator.connector.RepositoryConnector;
 import com.softwareag.linguist.service.translator.entity.TranslationResult;
 import org.springframework.stereotype.Service;
@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 @Service
 public class VirtualTranslator {
 
-    private TranslateText translateText;
+    private MicrosoftVirtualTranslator microsoftVirtualTranslator;
 
     private RepositoryConnector connector;
 
     private final String tempLocation = System.getProperty("java.io.tmpdir");
 
-    public VirtualTranslator(TranslateText translateText, RepositoryConnector connector) {
-        this.translateText = translateText;
+    public VirtualTranslator(MicrosoftVirtualTranslator microsoftVirtualTranslator, RepositoryConnector connector) {
+        this.microsoftVirtualTranslator = microsoftVirtualTranslator;
         this.connector = connector;
     }
 
@@ -98,7 +98,7 @@ public class VirtualTranslator {
         Map<String, TranslationResult> translationResultMap = new LinkedHashMap<String, TranslationResult>();
         Set<Map.Entry<Object, Object>> entries = properties.entrySet();
         for(Map.Entry<Object, Object> entry : entries){
-            List<TranslationResult> translate = translateText.translate((String) entry.getValue(), translation);
+            List<TranslationResult> translate = microsoftVirtualTranslator.translate((String) entry.getValue(), translation);
             translationResultMap.put((String)entry.getKey(),translate.get(0));
         }
 

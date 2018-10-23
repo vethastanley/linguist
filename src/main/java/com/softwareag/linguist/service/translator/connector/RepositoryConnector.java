@@ -69,7 +69,7 @@ public class RepositoryConnector {
         return localizedFilesPath;
     }
 
-    public void pushCommand(String sourceFolder, String repoUrl, String commitMessage, String usrName, String password){
+    public void pushCommand(String sourceFolder, String repoUrl, String commitMessage, String usrName, String password) throws Exception{
         try (Git git = Git.open(new File(sourceFolder))) {
 
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
@@ -84,12 +84,8 @@ public class RepositoryConnector {
             pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(usrName, password));
             pushCommand.call();
 
-        } catch (IOException | AbortedByHookException | NoFilepatternException | NoMessageException | ConcurrentRefUpdateException | NoHeadException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (GitAPIException e) {
-            e.printStackTrace();
+        } catch (Exception e){
+            throw e;
         }
     }
 

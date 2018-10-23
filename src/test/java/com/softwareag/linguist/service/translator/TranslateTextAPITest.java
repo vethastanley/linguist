@@ -16,12 +16,12 @@ public class TranslateTextAPITest {
 
     public static void main(String[] args) {
         try {
-            TranslateText translateText = new TranslateText();
+            MicrosoftVirtualTranslator microsoftVirtualTranslator = new MicrosoftVirtualTranslator();
             List<Locale> locales = new ArrayList<Locale>();
             locales.add(Locale.GERMAN);
             locales.add(Locale.ITALIAN);
             locales.add(Locale.CHINESE);
-            List<TranslationResult> translationResults= translateText.translate (text, locales);
+            List<TranslationResult> translationResults= microsoftVirtualTranslator.translate (text, locales);
             for(TranslationResult.Translation translationResult : translationResults.get(0).getTranslations()){
                 System.out.println(translationResult.getTo());
                 System.out.println(translationResult.getText());

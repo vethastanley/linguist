@@ -20,10 +20,9 @@ import java.util.Locale;
  * Created by anki on 10/19/2018.
  */
 @Component
-public class TranslateText {
+public class MicrosoftVirtualTranslator {
 
     static String subscriptionKey = "d1a1960be4c64025ab76eb5a8358631a";
-
     static String host = "https://api.cognitive.microsofttranslator.com";
     static String path = "/translate?api-version=3.0";
 
