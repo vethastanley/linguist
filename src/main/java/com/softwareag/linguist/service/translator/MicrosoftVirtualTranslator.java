@@ -75,6 +75,19 @@ public class MicrosoftVirtualTranslator {
         return convert(Post(url, content));
     }
 
+    public List<TranslationResult> translate (String text, Locale language) throws Exception {
+        StringBuffer params = new StringBuffer();
+        params.append("&");
+        params.append("to="+language.getLanguage());
+        URL url = new URL (host + path + params.toString());
+
+        List<RequestBody> objList = new ArrayList<RequestBody>();
+        objList.add(new RequestBody(text));
+        String content = new Gson().toJson(objList);
+
+        return convert(Post(url, content));
+    }
+
     private List<TranslationResult> convert(String json_text) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type listType = new TypeToken<List<TranslationResult>>() {}.getType();
