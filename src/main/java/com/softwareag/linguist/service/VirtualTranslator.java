@@ -19,6 +19,7 @@ public class VirtualTranslator {
 
     public static final String PROPERTIES = "properties";
     public static final String JSON = "json";
+    public static final String DEFAULT_PATTERN = "src/main/webapp/i18n/en/" + "([^(_)]*).json";
 
     private RepositoryConnector connector;
 
@@ -41,7 +42,15 @@ public class VirtualTranslator {
         if (!temp.exists()) {
             temp.mkdir();
         }
-        List<String> localizedProperties = connector.findLocalizedProperties(project.getUrl(), projectTemp);
+        String pattern = project.getPattern();
+        if(pattern == null || pattern.isEmpty()){
+            pattern = DEFAULT_PATTERN;
+        }
+        List<String> localizedProperties = new ArrayList<>();
+        String[] regArray = pattern.split(",");
+        for(String regEx : regArray){
+            localizedProperties.addAll(connector.findLocalizedProperties(project.getUrl(), projectTemp, regEx));
+        }
         System.out.println("localizedProperties :"+localizedProperties);
         localizedProperties.forEach(localizedProperty -> {
             try {

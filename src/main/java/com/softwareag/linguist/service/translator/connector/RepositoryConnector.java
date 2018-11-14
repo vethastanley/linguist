@@ -25,10 +25,8 @@ import java.util.List;
 @Component
 public class RepositoryConnector {
 
-    private static final String localizedFilesBase = "src/main/webapp/i18n/en/";
-    private static final String localizedFilesPattern = "([^(_)]*).json";
 
-    public List<String> findLocalizedProperties(String repositoryLocation, String targetLocation) throws  Exception {
+    public List<String> findLocalizedProperties(String repositoryLocation, String targetLocation, String regex) throws  Exception {
         List<String> localizedFilesPath = new ArrayList<String>();
         File file = new File(targetLocation);
         Git git = null;
@@ -54,7 +52,6 @@ public class RepositoryConnector {
                 if (treeWalk.isSubtree()) {
                     treeWalk.enterSubtree();
                 } else {
-                    String regex = localizedFilesBase + localizedFilesPattern;
                     if (treeWalk.getPathString().matches(regex)) {
                         localizedFilesPath.add(targetLocation + File.separatorChar + treeWalk.getPathString());
                         System.out.println("file: " + treeWalk.getPathString());
